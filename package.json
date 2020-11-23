@@ -1,0 +1,24 @@
+{
+  "name": "njs",
+  "version": "1.0.0",
+  "description": "A Layered Architecture node.js Boilerplate.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedSomaa/njs.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "javascript"
+  ],
+  "author": "Ahmed Ismail Abo Kahf <ahmedsomaa@aucegypt.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AhmedSomaa/njs/issues"
+  },
+  "homepage": "https://github.com/AhmedSomaa/njs#readme"
+}
