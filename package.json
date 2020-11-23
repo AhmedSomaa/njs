@@ -4,7 +4,20 @@
   "description": "A Layered Architecture node.js Boilerplate.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon",
+    "prestart": "npm run build",
+    "start": "node ./dist/index.js",
+    "prebuild": "npm run clean",
+    "build": "npm run transpile",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "clean": "rimraf ./dist",
+    "format": "prettier --config ./.prettierrc src/**/*.js --write",
+    "transpile": "babel ./src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   },
   "repository": {
     "type": "git",
@@ -20,5 +33,23 @@
   "bugs": {
     "url": "https://github.com/AhmedSomaa/njs/issues"
   },
-  "homepage": "https://github.com/AhmedSomaa/njs#readme"
+  "homepage": "https://github.com/AhmedSomaa/njs#readme",
+  "devDependencies": {
+    "@babel/node": "^7.12.6",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.12.7",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "nodemon": "^2.0.6",
+    "rimraf": "^3.0.2"
+  }
 }
