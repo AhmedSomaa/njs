@@ -70,7 +70,7 @@ export default function bookRouter(debug) {
       const record = await bookService.updateBook(req.body);
       if (record) {
         debug.printSuccess(`${req.method} ${req.originalUrl} ${req.ip}`);
-        res.status(200).send(record).end();
+        res.status(200).send({ updated: true }).end();
       } else {
         debug.printError(`${req.method} ${req.originalUrl} ${req.ip} Book with ISBN# ${isbn} doesn't exist..`);
         res.status(404).end();
@@ -88,7 +88,7 @@ export default function bookRouter(debug) {
       const record = await bookService.deleteBook(isbn);
       if (record) {
         debug.printSuccess(`${req.method} ${req.originalUrl} ${req.ip}`);
-        res.status(200).end();
+        res.status(200).send({ deleted: true }).end();
       } else {
         debug.printError(`${req.method} ${req.originalUrl} ${req.ip} Book with ISBN# ${isbn} doesn't exist..`);
         res.status(404).end();
