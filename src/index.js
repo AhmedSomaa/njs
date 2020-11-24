@@ -1,6 +1,6 @@
 import routes from './routes';
-import middlewares from './middlewares';
 import Server from './classes/server';
+import middlewares from './middlewares';
 
 // create new application
 const application = new Server(3000, 'localhost');
