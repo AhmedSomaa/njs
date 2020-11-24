@@ -10,7 +10,7 @@ import db from '../config/db';
 import API from '../config/apis';
 import logger from '../middlewares/winston';
 import swaggerOptions from '../config/swagger';
-import MongooseService from '../services/mongoose';
+import MongooseService from '../services/mongoose.service';
 
 export default class Server {
   constructor(port, host) {
