@@ -6,9 +6,11 @@ import swaggerUi from 'swagger-ui-express';
 
 // custom modules imports
 import Debug from './debug';
+import db from '../config/db';
 import API from '../config/apis';
 import logger from '../middlewares/winston';
 import swaggerOptions from '../config/swagger';
+import MongooseService from '../services/mongoose';
 
 export default class Server {
   constructor(port, host) {
@@ -19,6 +21,7 @@ export default class Server {
     this.baseUrl = API.BASE_URL;
     this.debug = new Debug(this.logger);
     this.swaggerSpecs = swaggerJsdoc(swaggerOptions);
+    this.mongoose = new MongooseService(db.DB_URL, db.OPTIONS);
   }
 
   setMiddlewares(middlewares) {
@@ -56,6 +59,16 @@ export default class Server {
       this.debug.printSuccess('Swagger docs successfully set.');
     } catch (err) {
       this.debug.printError(`Error setting swagger docs, ${err}`);
+    }
+  }
+
+  async connectToDB() {
+    this.debug.printInfo('Trying to connect to db.');
+    try {
+      this.db = await this.mongoose.connect();
+      this.debug.printSuccess('Express Server successfully connected to db');
+    } catch (err) {
+      this.debug.printError('Express Server failed to connect to db.');
     }
   }
 
