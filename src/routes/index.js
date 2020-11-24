@@ -4,8 +4,8 @@ import statusRouter from './status';
 export default [
   {
     name: API.STATUS_URL,
-    router(logger, debug, timestamp) {
-      return statusRouter(logger, debug, timestamp);
+    router(debug) {
+      return statusRouter(debug);
     }
   }
 ];
