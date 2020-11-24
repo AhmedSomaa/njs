@@ -34,7 +34,7 @@ export default class Server {
   setApiRoutes(routes) {
     this.debug.printInfo('Trying to set application api routes.');
     try {
-      routes.forEach(({ name, router }) => this.app.use(`/${this.baseUrl}/${name}`, router(this.logger, this.debug)));
+      routes.forEach(({ name, router }) => this.app.use(`/${this.baseUrl}/${name}`, router(this.debug)));
       this.debug.printSuccess('Application api routes successfully set.');
     } catch (err) {
       this.debug.printError(`Error setting application api routes, ${err}`);
