@@ -1,4 +1,5 @@
 import Server from '../models/classes/server';
+
 jest.mock('../models/classes/server');
 
 describe('Server Class', () => {
@@ -7,6 +8,7 @@ describe('Server Class', () => {
   });
 
   it('Server Class Construcort Could be Called', () => {
+    // eslint-disable-next-line no-unused-vars
     const server = new Server();
     expect(Server).toHaveBeenCalledTimes(1);
   });
