@@ -6,9 +6,9 @@ import swaggerUi from 'swagger-ui-express';
 
 // custom modules imports
 import Debug from './debug';
-import API from '../../config/apis';
-import logger from '../../middlewares/winston';
-import swaggerOptions from '../../config/swagger';
+import API from '../config/apis';
+import logger from '../middlewares/winston';
+import swaggerOptions from '../config/swagger';
 
 export default class Server {
   constructor(port, host) {
@@ -22,22 +22,30 @@ export default class Server {
   }
 
   setMiddlewares(middlewares) {
-    this.debug.printInfo('Trying to set application middlewares.', this.logger);
-    try {
-      middlewares.forEach((middleware) => this.app.use(middleware));
-      this.debug.printSuccess('Application middlewares successfully set.', this.logger);
-    } catch (err) {
-      this.debug.printError(`Error setting application middlewares, ${err}`, this.logger);
+    if (middlewares) {
+      this.debug.printInfo('Trying to set application middlewares.');
+      try {
+        middlewares.forEach((middleware) => this.app.use(middleware));
+        this.debug.printSuccess('Application middlewares successfully set.');
+      } catch (err) {
+        this.debug.printError(`Error setting application middlewares, ${err}`);
+      }
+    } else {
+      this.debug.printError('Middlewares array is empty.');
     }
   }
 
   setApiRoutes(routes) {
-    this.debug.printInfo('Trying to set application api routes.');
-    try {
-      routes.forEach(({ name, router }) => this.app.use(`/${this.baseUrl}/${name}`, router(this.debug)));
-      this.debug.printSuccess('Application api routes successfully set.');
-    } catch (err) {
-      this.debug.printError(`Error setting application api routes, ${err}`);
+    if (routes) {
+      this.debug.printInfo('Trying to set application api routes.');
+      try {
+        routes.forEach(({ name, router }) => this.app.use(`/${this.baseUrl}/${name}`, router(this.debug)));
+        this.debug.printSuccess('Application api routes successfully set.');
+      } catch (err) {
+        this.debug.printError(`Error setting application api routes, ${err}`);
+      }
+    } else {
+      this.debug.printError('routes array is empty.');
     }
   }
 
