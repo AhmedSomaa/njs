@@ -26,7 +26,7 @@ export default class Debug {
   }
 
   printError(msg) {
-    this.log.error(msg);
+    this.logger.error(msg);
     console.log(this.error(`${this.timestamp} [FAIL]`), this.errorMsg(msg));
   }
 
