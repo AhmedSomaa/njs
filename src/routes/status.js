@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-export default function statusRouter(logger, debug) {
+export default function statusRouter(debug) {
   const router = new Router();
 
   router.get('/', (req, res) => {
