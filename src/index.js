@@ -16,3 +16,6 @@ application.setSwagger();
 
 // start server
 application.start();
+
+// connect to mongoDB
+application.connectToDB();
