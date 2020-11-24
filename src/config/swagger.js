@@ -82,6 +82,98 @@ export default {
             }
           }
         }
+      },
+      '/books/{isbn}': {
+        get: {
+          tags: ['Book'],
+          summary: 'Find book by ISBN',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              name: 'isbn',
+              in: 'path',
+              description: 'ISBN of the book to return',
+              required: true,
+              type: 'string',
+              format: 'utf8'
+            }
+          ],
+          responses: {
+            200: {
+              description: 'OK'
+            },
+            404: {
+              description: 'Not Found'
+            },
+            500: {
+              description: 'Internal Server Error'
+            }
+          }
+        },
+        put: {
+          tags: ['Book'],
+          summary: 'Update book by ISBN',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              name: 'isbn',
+              in: 'path',
+              description: 'ISBN of the book to update',
+              required: true,
+              type: 'string',
+              format: 'utf8'
+            },
+            {
+              in: 'body',
+              name: 'body',
+              description: 'Updated book object',
+              required: true,
+              schema: {
+                $ref: '#/definitions/Book'
+              }
+            }
+          ],
+          responses: {
+            200: {
+              description: 'OK'
+            },
+            404: {
+              description: 'Not Found'
+            },
+            500: {
+              description: 'Internal Server Error'
+            }
+          }
+        },
+        delete: {
+          tags: ['Book'],
+          summary: 'Delete book by ISBN',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              name: 'isbn',
+              in: 'path',
+              description: 'ISBN of the book to delete',
+              required: true,
+              type: 'string',
+              format: 'utf8'
+            }
+          ],
+          responses: {
+            200: {
+              description: 'OK'
+            },
+            404: {
+              description: 'Not Found'
+            },
+            500: {
+              description: 'Internal Server Error'
+            }
+          }
+        }
       }
     },
     definitions: {
